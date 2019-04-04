@@ -1,0 +1,20 @@
+<plugin>
+  <groupId>com.cookie.server</groupId>
+  <artifactId>docker-cookie-server</artifactId>
+  <version>1.0.0</version>
+  <configuration>
+    <!-- 路径为：私有仓库地址/你想要的镜像路径 -->
+    <imageName>registry.cn-shanghai.aliyuncs.com/crawler_test/cookie_server</imageName>
+    <dockerDirectory>${project.basedir}</dockerDirectory>
+ 
+    <resources>
+      <resource>
+        <targetPath>/</targetPath>
+        <directory>${project.build.directory}</directory>
+      </resource>
+    </resources>
+ 
+    <!-- 与maven配置文件settings.xml一致 -->
+    <serverId>docker-registry</serverId>
+  </configuration>
+</plugin>
