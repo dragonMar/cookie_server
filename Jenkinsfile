@@ -14,11 +14,13 @@ pipeline {
             }
         }
         stage('Deploy Image') {
+            agent none
             steps{
                 sh "docker push $registryHost/$registry:$BUILD_NUMBER"
             }
          }
          stage('Remove Unused docker image') {
+             agent none
              steps{
                  sh "docker rmi $registry:$BUILD_NUMBER"
              }
