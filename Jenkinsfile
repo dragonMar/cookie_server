@@ -9,10 +9,20 @@ pipeline {
             steps{
                 script {
                     dockerImage = docker.build registry + ":$BUILD_NUMBER"
-                    dockerImage.push()
                 }
             }
         }
+        stage('Publish') {
+            when {
+              branch 'master'
+            }
+            steps {
+              withDockerRegistry([ credentialsId: "aliyundocker", url: "" ]) {
+
+                dockerImage.push()
+              }
+            }
+          }
          stage('Remove Unused docker image') {
              steps{
                  sh "docker rmi $registry:$BUILD_NUMBER"
