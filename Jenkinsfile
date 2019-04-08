@@ -1,6 +1,6 @@
 pipeline {
     environment {
-        registry = "cookie_server"
+        registry = "localhost:5000/cookie_server"
         dockerImage = ''
     }
     agent none
@@ -18,7 +18,7 @@ pipeline {
               branch 'master'
             }
             steps {
-                sh "docker push localhost:5000/$registry:$BUILD_NUMBER"
+                sh "docker push $registry:$BUILD_NUMBER"
             }
           }
         stage('Remove Unused docker image') {
