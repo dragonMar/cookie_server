@@ -17,10 +17,9 @@ pipeline {
               branch 'master'
             }
             steps {
-              withDockerRegistry([ credentialsId: "aliyundocker", url: "" ]) {
-
-                dockerImage.push()
-              }
+                withDockerRegistry([ credentialsId: "aliyundocker", url: "" ]) {
+                    dockerImage.push()
+                }
             }
           }
          stage('Remove Unused docker image') {
