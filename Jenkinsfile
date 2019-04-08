@@ -18,7 +18,7 @@ pipeline {
             }
             steps {
                 withDockerRegistry([ credentialsId: "aliyundocker", url: "" ]) {
-                    dockerImage.push()
+                    sh "docker push $registry:$BUILD_NUMBER"
                 }
             }
           }
