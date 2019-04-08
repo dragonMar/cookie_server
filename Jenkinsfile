@@ -18,7 +18,7 @@ pipeline {
               branch 'master'
             }
             steps {
-                sh "docker push localhost:5000/$$registry:$BUILD_NUMBER"
+                sh "docker push localhost:5000/$registry:$BUILD_NUMBER"
             }
           }
         stage('Remove Unused docker image') {
