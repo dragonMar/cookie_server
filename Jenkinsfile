@@ -19,7 +19,7 @@ pipeline {
             }
             steps {
                   withCredentials([usernamePassword(credentialsId: 'aliyundocker', passwordVariable: 'aliyundockerPassword', usernameVariable: 'aliyundockerUser')]) {
-                      sh "docker login -u ${env.aliyundockerUser} -p ${env.aliyundockerPassword}"
+                      sh "docker login -u ${env.aliyundockerUser} -p ${env.aliyundockerPassword} registry.cn-shanghai.aliyuncs.com"
                       sh 'docker push $registry:$BUILD_NUMBER'
                   }
             }
