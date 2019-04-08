@@ -16,7 +16,9 @@ pipeline {
         stage('Deploy Image') {
             agent none
             steps{
-                sh "docker push $registryHost/$registry:$BUILD_NUMBER"
+              withDockerRegistry([ credentialsId: "", url: "" ]) {
+                sh 'docker push $registry.cn-shanghai.aliyuncs.com/crawler_test/$registry:latest$BUILD_NUMBER'
+              }
             }
          }
          stage('Remove Unused docker image') {
