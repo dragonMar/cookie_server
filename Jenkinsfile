@@ -13,6 +13,7 @@ pipeline {
             }
         }
         stage('Publish') {
+            agent any
             when {
               branch 'master'
             }
