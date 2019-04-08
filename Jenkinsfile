@@ -27,5 +27,11 @@ pipeline {
                 sh "docker rmi $registry:$BUILD_NUMBER"
             }
         }
+        stage('Deploy') {
+            agent any
+            steps{
+                sh 'ssh root@10.27.236.132 "sed -i \"s/\"$registry:$(($BUILD_NUMBER-1))\"/\"$registry:$BUILD_NUMBER\"/\" docker-compose.yml"'
+            }
+        }
     }
 }
