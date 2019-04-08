@@ -1,7 +1,7 @@
 pipeline {
     environment {
         registry = "cookie_server"
-        registryCredential = 'registry.cn-shanghai.aliyuncs.com/crawler_test'
+        registryHost = 'registry.cn-shanghai.aliyuncs.com/crawler_test'
         dockerImage = ''
     }
     agent none
@@ -15,11 +15,7 @@ pipeline {
         }
         stage('Deploy Image') {
             steps{
-                script {
-                        docker.withRegistry( '', registryCredential ) {
-                            dockerImage.push()
-                        }
-                }
+                sh "docker push $registryHost/$registry:$$BUILD_NUMBER"
             }
          }
          stage('Remove Unused docker image') {
