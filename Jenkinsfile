@@ -1,13 +1,13 @@
 pipeline {
-    agent none 
+    agent none
     stages {
-        stage('Build') { 
+        stage('Build') {
             agent {
                 dockerfile true
             }
-        }
-        steps {
-                echo 'Finish'
+            steps {
+                echo 'finish'
             }
+        }
     }
 }
