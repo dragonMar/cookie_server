@@ -15,7 +15,8 @@ pipeline {
         }
         stage('Deploy Image') {
             steps{
-              withDockerRegistry([ credentialsId: "", url: "" ]) {
+              withCredentials([usernamePassword(credentialsId: 'aliyundocker', passwordVariable: 'aliyundockerPassword', usernameVariable: 'aliyundockerUser')]) {
+                sh "docker login -u ${env.aliyundockerUser} -p ${env.aliyundockerPassword}"
                 sh 'docker push $registry.cn-shanghai.aliyuncs.com/crawler_test/$registry:latest$BUILD_NUMBER'
               }
             }
