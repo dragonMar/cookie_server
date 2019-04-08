@@ -1,7 +1,7 @@
 pipeline {
     environment {
         registry = "cookie_server"
-        registryCredential = 'localhost:5000'
+        registryCredential = 'registry.cn-shanghai.aliyuncs.com/crawler_test'
         dockerImage = ''
     }
     agent none
@@ -16,9 +16,9 @@ pipeline {
         stage('Deploy Image') {
             steps{
                 script {
-                    docker.withRegistry( '', registryCredential ) {
-                        dockerImage.push()
-                    }
+                        docker.withRegistry( '', registryCredential ) {
+                            dockerImage.push()
+                        }
                 }
             }
          }
