@@ -15,7 +15,7 @@ pipeline {
         }
         stage('Deploy Image') {
             steps{
-                sh "docker push $registryHost/$registry:$$BUILD_NUMBER"
+                sh "docker push $registryHost/$registry:$BUILD_NUMBER"
             }
          }
          stage('Remove Unused docker image') {
