@@ -6,5 +6,8 @@ pipeline {
                 dockerfile true
             }
         }
+        steps {
+                echo 'Finish'
+            }
     }
 }
