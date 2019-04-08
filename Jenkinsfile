@@ -1,6 +1,6 @@
 pipeline {
     environment {
-        registry = "registry.cn-shanghai.aliyuncs.com/crawler_test/cookie_server"
+        registry = "cookie_server"
         dockerImage = ''
     }
     agent none
@@ -18,10 +18,7 @@ pipeline {
               branch 'master'
             }
             steps {
-                  withCredentials([usernamePassword(credentialsId: 'aliyundocker', passwordVariable: 'aliyundockerPassword', usernameVariable: 'aliyundockerUser')]) {
-                      sh "docker login -u ${env.aliyundockerUser} -p ${env.aliyundockerPassword} registry.cn-shanghai.aliyuncs.com"
-                      sh 'docker push $registry:$BUILD_NUMBER'
-                  }
+                sh "docker push localhost:5000/$$registry:$BUILD_NUMBER"
             }
           }
         stage('Remove Unused docker image') {
